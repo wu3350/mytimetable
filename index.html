@@ -9,7 +9,6 @@
     <meta name="apple-mobile-web-app-title" content="学期课表">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" id="manifestLink">
-    <!-- 后续图标由 JavaScript 动态生成 -->
     <title>学期课表 · 周工作台</title>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
     </script>
@@ -33,15 +32,14 @@
             overflow-x: hidden;
             user-select: none;
         }
-        /* ===== 顶部导航 ===== */
         .app-header {
             position: sticky;
             top: 0;
             z-index: 20;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255,255,255,0.85);
             backdrop-filter: saturate(180%) blur(12px);
             -webkit-backdrop-filter: saturate(180%) blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
             padding: 10px 16px 8px;
             display: flex;
             justify-content: space-between;
@@ -88,14 +86,13 @@
             font-family: inherit;
             cursor: pointer;
         }
-        /* ===== 今日摘要卡片 ===== */
         .today-card {
             margin: 12px 16px 10px;
             background: linear-gradient(135deg, #2563eb, #4f46e5);
             border-radius: 24px;
             padding: 14px 18px;
             color: #fff;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 8px 24px rgba(37,99,235,0.25);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -115,13 +112,13 @@
             gap: 6px;
         }
         .today-card .today-courses .count {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.2);
             border-radius: 40px;
             padding: 2px 14px;
             font-size: 14px;
         }
         .today-card .action-btn {
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(255,255,255,0.18);
             border: none;
             color: #fff;
             padding: 5px 14px;
@@ -134,17 +131,21 @@
         }
         .today-card .action-btn:active {
             transform: scale(0.94);
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
         }
-        /* ===== 课表容器 ===== */
         .timetable-wrapper {
             margin: 4px 12px 16px;
             background: #ffffff;
             border-radius: 24px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
             padding: 10px 6px 8px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            /* 为滑动切换添加过渡效果 */
+            transition: opacity 0.15s ease;
+        }
+        .timetable-wrapper.switching {
+            opacity: 0.5;
         }
         .timetable {
             width: 100%;
@@ -154,8 +155,7 @@
             border-radius: 16px;
             overflow: hidden;
         }
-        .timetable th,
-        .timetable td {
+        .timetable th, .timetable td {
             border: 1px solid #eef2f6;
             padding: 6px 3px;
             text-align: center;
@@ -219,7 +219,7 @@
         }
         .timetable td .course-detail {
             font-size: 10px;
-            color: rgba(0, 0, 0, 0.55);
+            color: rgba(0,0,0,0.55);
             display: block;
             font-weight: 400;
             margin-top: 1px;
@@ -230,53 +230,21 @@
             font-size: 12px;
             font-weight: 300;
         }
-        /* 颜色方案 */
-        .color-0 {
-            background: #dbeafe;
-        }
-        .color-1 {
-            background: #d1fae5;
-        }
-        .color-2 {
-            background: #fef3c7;
-        }
-        .color-3 {
-            background: #fce7f3;
-        }
-        .color-4 {
-            background: #e0e7ff;
-        }
-        .color-5 {
-            background: #fed7aa;
-        }
-        .color-6 {
-            background: #c7d2fe;
-        }
-        .color-7 {
-            background: #a7f3d0;
-        }
-        .color-8 {
-            background: #fecaca;
-        }
-        .color-9 {
-            background: #bfdbfe;
-        }
-        .color-10 {
-            background: #fde68a;
-        }
-        .color-11 {
-            background: #e9d5ff;
-        }
-        .color-12 {
-            background: #bae6fd;
-        }
-        .color-13 {
-            background: #bbf7d0;
-        }
-        .color-14 {
-            background: #fecdd3;
-        }
-        /* ===== 空状态 ===== */
+        .color-0 { background: #dbeafe; }
+        .color-1 { background: #d1fae5; }
+        .color-2 { background: #fef3c7; }
+        .color-3 { background: #fce7f3; }
+        .color-4 { background: #e0e7ff; }
+        .color-5 { background: #fed7aa; }
+        .color-6 { background: #c7d2fe; }
+        .color-7 { background: #a7f3d0; }
+        .color-8 { background: #fecaca; }
+        .color-9 { background: #bfdbfe; }
+        .color-10 { background: #fde68a; }
+        .color-11 { background: #e9d5ff; }
+        .color-12 { background: #bae6fd; }
+        .color-13 { background: #bbf7d0; }
+        .color-14 { background: #fecdd3; }
         .empty-state {
             display: flex;
             flex-direction: column;
@@ -316,26 +284,22 @@
         .empty-state .upload-hint:active {
             background: #d1d9e6;
         }
-        /* ===== 隐藏文件输入 ===== */
-        .file-input-hidden {
-            display: none;
-        }
-        /* ===== 底部导航 ===== */
+        .file-input-hidden { display: none; }
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 30;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255,255,255,0.92);
             backdrop-filter: saturate(180%) blur(14px);
             -webkit-backdrop-filter: saturate(180%) blur(14px);
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-top: 1px solid rgba(0,0,0,0.04);
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 6px 0 env(safe-area-inset-bottom, 8px);
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
         }
         .bottom-nav .nav-item {
             display: flex;
@@ -363,12 +327,11 @@
         .bottom-nav .nav-item:active {
             transform: scale(0.92);
         }
-        /* ===== 编辑弹窗 ===== */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(15,23,42,0.5);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             z-index: 999;
@@ -376,16 +339,14 @@
             align-items: flex-end;
             animation: fadeIn 0.2s ease;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         .modal-box {
             background: #fff;
             border-radius: 28px 28px 0 0;
-            padding: 24px 20px calc(20px + env(safe-area-inset-bottom, 12px));
+            padding: 24px 20px calc(20px + env(safe-area-inset-bottom,12px));
             max-width: 500px;
             width: 100%;
-            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.15);
             animation: slideUp 0.3s ease;
             max-height: 85vh;
             overflow-y: auto;
@@ -439,18 +400,9 @@
             background: #f1f5f9;
             color: #1e293b;
         }
-        .modal-actions .btn:active {
-            transform: scale(0.94);
-        }
-        .modal-actions .btn-primary {
-            background: #2563eb;
-            color: #fff;
-        }
-        .modal-actions .btn-outline {
-            background: transparent;
-            border: 2px solid #e2e8f0;
-        }
-        /* ===== 时间设置 ===== */
+        .modal-actions .btn:active { transform: scale(0.94); }
+        .modal-actions .btn-primary { background: #2563eb; color: #fff; }
+        .modal-actions .btn-outline { background: transparent; border: 2px solid #e2e8f0; }
         .time-setting-item {
             display: flex;
             align-items: center;
@@ -487,7 +439,6 @@
             color: #94a3b8;
             font-size: 14px;
         }
-        /* ===== 信息条 ===== */
         .info-bar {
             display: flex;
             justify-content: space-between;
@@ -507,112 +458,37 @@
             border-radius: 50%;
             display: inline-block;
         }
-        .dot.green {
-            background: #22c55e;
-        }
-        .dot.gray {
-            background: #cbd5e1;
-        }
-        /* ===== 动画 ===== */
+        .dot.green { background: #22c55e; }
+        .dot.gray { background: #cbd5e1; }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-        /* ===== 打印 ===== */
         @media print {
-            body {
-                padding: 0;
-                background: #fff;
-            }
-            .app-header,
-            .bottom-nav,
-            .today-card,
-            .info-bar,
-            .no-print {
-                display: none !important;
-            }
-            .timetable-wrapper {
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-                border-radius: 0;
-            }
-            .timetable {
-                min-width: auto;
-                font-size: 11px;
-            }
-            .timetable th,
-            .timetable td {
-                border-color: #ccc;
-                padding: 4px 3px;
-            }
-            .modal-overlay {
-                display: none !important;
-            }
+            body { padding: 0; background: #fff; }
+            .app-header, .bottom-nav, .today-card, .info-bar, .no-print { display: none !important; }
+            .timetable-wrapper { box-shadow: none; margin: 0; padding: 0; border-radius: 0; }
+            .timetable { min-width: auto; font-size: 11px; }
+            .timetable th, .timetable td { border-color: #ccc; padding: 4px 3px; }
+            .modal-overlay { display: none !important; }
         }
-        /* ===== 小屏 ===== */
         @media (max-width: 420px) {
-            .app-header .brand h1 {
-                font-size: 16px;
-            }
-            .app-header .week-selector {
-                font-size: 12px;
-                padding: 2px 6px 2px 10px;
-            }
-            .app-header .week-selector select {
-                font-size: 12px;
-            }
-            .timetable {
-                font-size: 11px;
-                min-width: 380px;
-            }
-            .timetable th,
-            .timetable td {
-                padding: 4px 2px;
-                height: 36px;
-                min-height: 36px;
-                font-size: 11px;
-            }
-            .timetable .col-weekday {
-                min-width: 42px;
-                width: 42px;
-                font-size: 10px;
-            }
-            .timetable .col-period {
-                min-width: 36px;
-                width: 36px;
-                font-size: 10px;
-            }
-            .timetable td .course-name {
-                font-size: 11px;
-            }
-            .timetable td .course-detail {
-                font-size: 9px;
-            }
-            .today-card {
-                padding: 12px 14px;
-                margin: 10px 12px 8px;
-            }
-            .today-card .today-courses {
-                font-size: 14px;
-            }
-            .modal-box {
-                padding: 18px 14px;
-            }
+            .app-header .brand h1 { font-size: 16px; }
+            .app-header .week-selector { font-size: 12px; padding: 2px 6px 2px 10px; }
+            .app-header .week-selector select { font-size: 12px; }
+            .timetable { font-size: 11px; min-width: 380px; }
+            .timetable th, .timetable td { padding: 4px 2px; height: 36px; min-height: 36px; font-size: 11px; }
+            .timetable .col-weekday { min-width: 42px; width: 42px; font-size: 10px; }
+            .timetable .col-period { min-width: 36px; width: 36px; font-size: 10px; }
+            .timetable td .course-name { font-size: 11px; }
+            .timetable td .course-detail { font-size: 9px; }
+            .today-card { padding: 12px 14px; margin: 10px 12px 8px; }
+            .today-card .today-courses { font-size: 14px; }
+            .modal-box { padding: 18px 14px; }
         }
         .timetable-wrapper::-webkit-scrollbar {
             height: 4px;
@@ -733,16 +609,14 @@
 
     <script>
         // ============================================================
-        //  1. PWA 支持：生成 manifest 和图标
+        //  PWA 支持：生成 manifest 和图标
         // ============================================================
         (function setupPWA() {
-            // 生成一个简单的图标 (canvas)
             function generateIcon(size) {
                 const canvas = document.createElement('canvas');
                 canvas.width = size;
                 canvas.height = size;
                 const ctx = canvas.getContext('2d');
-                // 背景渐变
                 const grad = ctx.createLinearGradient(0, 0, size, size);
                 grad.addColorStop(0, '#2563eb');
                 grad.addColorStop(1, '#7c3aed');
@@ -753,7 +627,6 @@
                 ctx.roundRect(0, 0, size, size, size * 0.2);
                 ctx.fill();
                 ctx.shadowBlur = 0;
-                // 文字
                 ctx.fillStyle = '#ffffff';
                 ctx.font = `bold ${size * 0.5}px -apple-system, "PingFang SC", "Segoe UI", Roboto, sans-serif`;
                 ctx.textAlign = 'center';
@@ -761,8 +634,6 @@
                 ctx.fillText('📚', size / 2, size / 2 - 2);
                 return canvas.toDataURL('image/png');
             }
-
-            // 生成多个尺寸
             const iconSizes = [192, 512];
             const icons = iconSizes.map(s => ({
                 src: generateIcon(s),
@@ -770,8 +641,6 @@
                 type: 'image/png',
                 purpose: 'any maskable'
             }));
-
-            // 构建 manifest
             const manifest = {
                 name: '学期课表工作台',
                 short_name: '课表',
@@ -782,25 +651,19 @@
                 theme_color: '#2563eb',
                 icons: icons
             };
-
-            // 创建 manifest 链接
             const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const link = document.getElementById('manifestLink');
             link.href = url;
-
-            // 添加 apple-touch-icon (使用 192x192)
             const appleIcon = document.createElement('link');
             appleIcon.rel = 'apple-touch-icon';
             appleIcon.href = icons[0].src;
             document.head.appendChild(appleIcon);
-
-            // 添加启动画面相关的 meta (iOS 会使用 apple-touch-icon)
             console.log('✅ PWA 资源已生成');
         })();
 
         // ============================================================
-        //  2. 学期课表 → 周课表  核心逻辑（不变）
+        //  核心逻辑（含滑动切换周次）
         // ============================================================
 
         (function() {
@@ -832,6 +695,7 @@
             const timeSettingList = document.getElementById('timeSettingList');
             const timeCancel = document.getElementById('timeCancel');
             const timeSave = document.getElementById('timeSave');
+            const timetableWrapper = document.getElementById('timetableWrapper');
 
             // ---------- 全局数据 ----------
             let timetableData = null;
@@ -840,7 +704,13 @@
             let editCellRef = null;
             let periodTimes = [];
 
-            // ---------- 默认时间表（14节，按用户提供） ----------
+            // ---------- 滑动切换相关 ----------
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+            const SWIPE_THRESHOLD = 50; // 滑动触发阈值（px）
+
+            // ---------- 默认时间表（14节） ----------
             function getDefaultTimes(count) {
                 const defaultList = [
                     { start: '08:00', end: '08:45' },
@@ -876,7 +746,7 @@
                 return result;
             }
 
-            // ---------- 加载/保存时间 ----------
+            // ---------- 时间存储 ----------
             function loadPeriodTimes() {
                 try {
                     const raw = localStorage.getItem('period_times');
@@ -1260,6 +1130,17 @@
                 };
             }
 
+            // ---------- 切换周次函数（供滑动和下拉共用） ----------
+            function switchToWeek(newIndex) {
+                if (!timetableData || !timetableData.weeks || timetableData.weeks.length === 0) return;
+                if (newIndex < 0 || newIndex >= timetableData.weeks.length) return;
+                currentWeekIndex = newIndex;
+                // 同步下拉框
+                weekSelect.value = newIndex;
+                renderWeekTimetable(timetableData, newIndex);
+                saveToStorage();
+            }
+
             // ---------- 渲染 ----------
             function renderWeekTimetable(data, weekIdx) {
                 if (!data || !data.weekdays || data.weekdays.length === 0 ||
@@ -1494,9 +1375,7 @@
                 weekSelect.onchange = function() {
                     const idx = parseInt(this.value);
                     if (!isNaN(idx) && timetableData) {
-                        currentWeekIndex = idx;
-                        renderWeekTimetable(timetableData, idx);
-                        saveToStorage();
+                        switchToWeek(idx);
                     }
                 };
             }
@@ -1664,6 +1543,50 @@
                 // 'timetable' 不做特殊操作
             }
 
+            // ---------- 滑动切换周次事件绑定 ----------
+            function bindSwipeEvents() {
+                const wrapper = timetableWrapper;
+                wrapper.addEventListener('touchstart', function(e) {
+                    const touch = e.touches[0];
+                    touchStartX = touch.clientX;
+                    touchStartY = touch.clientY;
+                    isSwiping = false;
+                }, { passive: true });
+
+                wrapper.addEventListener('touchmove', function(e) {
+                    if (!timetableData || !timetableData.weeks || timetableData.weeks.length <= 1) return;
+                    const touch = e.touches[0];
+                    const deltaX = touch.clientX - touchStartX;
+                    const deltaY = touch.clientY - touchStartY;
+                    // 如果水平位移大于垂直位移，且超过阈值，视为滑动切换
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > SWIPE_THRESHOLD) {
+                        isSwiping = true;
+                        e.preventDefault(); // 阻止页面滚动
+                        const direction = deltaX > 0 ? -1 : 1; // 左滑→下一周（+1），右滑→上一周（-1）
+                        const newIndex = currentWeekIndex + direction;
+                        if (newIndex >= 0 && newIndex < timetableData.weeks.length) {
+                            // 添加切换动画效果
+                            wrapper.classList.add('switching');
+                            switchToWeek(newIndex);
+                            setTimeout(() => {
+                                wrapper.classList.remove('switching');
+                            }, 200);
+                            // 重置触摸起点，避免连续触发
+                            touchStartX = touch.clientX;
+                            touchStartY = touch.clientY;
+                        }
+                    }
+                }, { passive: false });
+
+                wrapper.addEventListener('touchend', function(e) {
+                    // 如果发生了滑动切换，阻止可能触发的点击事件
+                    if (isSwiping) {
+                        e.preventDefault();
+                    }
+                    isSwiping = false;
+                }, { passive: false });
+            }
+
             // ---------- 事件绑定 ----------
             fileInput.addEventListener('change', function() {
                 if (this.files && this.files.length > 0) {
@@ -1725,9 +1648,12 @@
                 weekSelect.innerHTML = '<option>--</option>';
             }
 
-            console.log('📚 学期课表 → 周课表 (PWA增强版) 已启动');
-            console.log('💡 支持解析 "1-17周"、"单周/双周"、"第1节-第2节" 等格式');
-            console.log('⏰ 默认使用14节时间表，底部导航 "时间" 可自定义');
+            // 绑定滑动事件（无论是否加载数据，都绑定）
+            bindSwipeEvents();
+
+            console.log('📚 学期课表 → 周课表 (滑动切换版) 已启动');
+            console.log('💡 左右滑动课表区域可快速切换周次');
+            console.log('⏰ 底部导航 "时间" 可自定义每节课时间');
             console.log('📱 添加到主屏幕即可像原生应用一样使用');
         })();
     </script>
