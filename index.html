@@ -14,16 +14,12 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;background:#fff;color:#1e293b;min-height:100vh;padding:0 0 80px;overflow-x:hidden;user-select:none}
-
-/* ============ 顶部 ============ */
 .app-header{position:sticky;top:0;z-index:50;background:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 16px 0;border-bottom:1px solid #f1f5f9}
 .header-title{display:flex;align-items:center;gap:10px;padding:4px 0 8px}
 .header-title .week-select{font-size:20px;font-weight:700;color:#1e293b;background:transparent;border:none;outline:none;font-family:inherit;cursor:pointer;padding:0;flex-shrink:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M1 3l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right center;padding-right:16px}
 .header-title .date-text{font-size:13px;color:#94a3b8;margin-left:auto;flex-shrink:0}
 .header-title .today-btn{background:#2563eb;border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
 .header-title .today-btn:active{transform:scale(.9)}
-
-/* 日期条 */
 .header-days{display:grid;grid-template-columns:44px repeat(7,1fr);padding:0 0 6px;border-top:1px solid #f8fafc}
 .header-days .month-cell{display:flex;align-items:center;justify-content:center;font-size:11px;color:#94a3b8;padding-top:8px}
 .header-days .day-cell{text-align:center;padding:6px 0 4px;cursor:pointer;transition:.15s}
@@ -31,43 +27,32 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 .header-days .day-num{font-size:15px;font-weight:600;color:#334155;margin-top:2px;display:inline-block;width:28px;height:28px;line-height:28px;border-radius:9px}
 .header-days .day-cell.today .day-num{background:#1e293b;color:#fff}
 .header-days .day-cell.today .day-name{color:#1e293b;font-weight:600}
-
-/* ============ 课表主体 ============ */
 .timetable-wrapper{margin:6px 8px 16px;background:#fff;border-radius:14px;overflow:hidden;will-change:transform;transition:transform .25s cubic-bezier(.25,1,.5,1),opacity .25s ease}
 .tt-body{display:grid;grid-template-columns:44px repeat(7,1fr);position:relative}
 .tt-time{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;gap:2px;border-bottom:1px solid #f8fafc;padding:4px 0}
 .tt-time .tt-time-num{font-size:12px;font-weight:600;color:#64748b;line-height:1}
 .tt-time .tt-time-range{font-size:9px;line-height:1.15;color:#b0bcc9;text-align:center}
 .tt-time .tt-time-range span{display:block}
-
 .tt-bg{border-right:1px solid #f8fafc;border-bottom:1px solid #f8fafc}
 .tt-bg.last-col{border-right:none}
 .tt-bg.last-row{border-bottom:none}
-
 .tt-block{margin:2px;border-radius:8px;padding:6px 5px;overflow:hidden;font-size:10px;line-height:1.25;display:flex;flex-direction:column;position:relative;cursor:pointer;transition:transform .1s}
 .tt-block:active{transform:scale(.97)}
 .tt-block .tt-block-name{font-weight:600;color:#1e293b;word-break:break-word;font-size:11px;line-height:1.2}
 .tt-block .tt-block-detail{color:rgba(0,0,0,.5);font-size:9px;margin-top:2px;word-break:break-word;line-height:1.2}
-
 .color-0{background:#FCE4EC}.color-1{background:#E3F2FD}.color-2{background:#E8F5E9}.color-3{background:#FFF3E0}.color-4{background:#EDE7F6}.color-5{background:#E0F7FA}.color-6{background:#F3E5F5}.color-7{background:#FFF9C4}.color-8{background:#FFEBEE}.color-9{background:#E1F5FE}.color-10{background:#FBE9E7}.color-11{background:#E8EAF6}.color-12{background:#DCEDC8}.color-13{background:#F8BBD0}.color-14{background:#B3E5FC}
-
 .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 16px;color:#94a3b8;text-align:center;margin:16px 8px;background:#fafcff;border-radius:14px}
 .empty-state .big-icon{font-size:52px;margin-bottom:10px;opacity:.6}
 .empty-state h3{font-size:17px;font-weight:600;color:#475569}
 .empty-state p{font-size:13px;margin-top:4px;color:#94a3b8}
 .empty-state .upload-hint{margin-top:16px;display:inline-block;background:#eef2f6;padding:8px 22px;border-radius:40px;font-size:13px;color:#475569;border:1px dashed #cbd5e1;cursor:pointer;transition:.15s}
 .empty-state .upload-hint:active{background:#d1d9e6}
-
 .file-input-hidden{display:none}
-
-/* ============ 底部导航 ============ */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-top:1px solid rgba(0,0,0,.05);display:flex;justify-content:space-around;align-items:center;padding:6px 0 env(safe-area-inset-bottom,8px)}
 .bottom-nav .nav-item{display:flex;flex-direction:column;align-items:center;background:none;border:none;padding:4px 10px;font-size:11px;color:#94a3b8;cursor:pointer;transition:.15s;font-family:inherit;gap:2px;min-width:52px}
 .bottom-nav .nav-item .nav-icon{font-size:22px;line-height:1}
 .bottom-nav .nav-item.active{color:#2563eb;font-weight:600}
 .bottom-nav .nav-item:active{transform:scale(.92)}
-
-/* ============ 弹窗 ============ */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:999;justify-content:center;align-items:flex-end;animation:fadeIn .2s ease}
 .modal-overlay.active{display:flex}
 .modal-box{background:#fff;border-radius:28px 28px 0 0;padding:24px 20px calc(20px + env(safe-area-inset-bottom,12px));max-width:500px;width:100%;box-shadow:0 -20px 60px rgba(0,0,0,.15);animation:slideUp .3s ease;max-height:85vh;overflow-y:auto}
@@ -87,10 +72,8 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 .time-setting-item .time-inputs input[type="time"]{padding:6px 8px;border:2px solid #e2e8f0;border-radius:12px;font-size:14px;background:#fafcff;outline:none;width:100%;max-width:120px}
 .time-setting-item .time-inputs input[type="time"]:focus{border-color:#2563eb}
 .time-setting-item .time-inputs span{color:#94a3b8;font-size:14px}
-
-/* 设置 Tab */
-.settings-tabs{display:flex;gap:6px;background:#f1f5f9;padding:4px;border-radius:16px;margin-bottom:16px}
-.settings-tabs .tab{flex:1;background:transparent;border:none;padding:9px 6px;border-radius:12px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;font-family:inherit;transition:.15s}
+.settings-tabs{display:flex;gap:6px;background:#f1f5f9;padding:4px;border-radius:16px;margin-bottom:16px;overflow-x:auto}
+.settings-tabs .tab{flex:1;background:transparent;border:none;padding:9px 6px;border-radius:12px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap;min-width:70px}
 .settings-tabs .tab.active{background:#fff;color:#2563eb;box-shadow:0 2px 6px rgba(0,0,0,.06)}
 .tab-content{display:none}
 .tab-content.active{display:block}
@@ -108,8 +91,17 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 .reminder-lead .chip-lead{background:#eff6ff;color:#2563eb;font-weight:700;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;transition:.15s}
 .reminder-lead .chip-lead.on{background:#2563eb;color:#fff}
 .reminder-lead .desc{font-size:12px;color:#94a3b8;flex:1}
-
-/* Toast */
+/* 图标设置 */
+.icon-preview{display:flex;justify-content:center;padding:16px 0}
+.icon-preview img{width:96px;height:96px;border-radius:22px;box-shadow:0 6px 20px rgba(0,0,0,.15);background:#f1f5f9}
+.icon-emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:12px 0}
+.icon-emoji-grid .emoji-opt{aspect-ratio:1;border-radius:14px;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;transition:.15s;border:3px solid transparent}
+.icon-emoji-grid .emoji-opt.selected{border-color:#2563eb;box-shadow:0 0 0 2px #fff inset}
+.icon-emoji-grid .emoji-opt:active{transform:scale(.9)}
+.icon-action-btn{display:block;width:100%;background:#2563eb;color:#fff;border:none;padding:13px 20px;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px;transition:.15s}
+.icon-action-btn:active{transform:scale(.97)}
+.icon-action-btn.outline{background:transparent;color:#64748b;border:2px solid #e2e8f0}
+.icon-hint{background:#fef3c7;color:#92400e;font-size:12px;line-height:1.6;padding:10px 14px;border-radius:12px;margin-top:12px}
 .toast-container{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:2000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .toast{background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;border-radius:20px;padding:14px 18px;box-shadow:0 10px 30px rgba(37,99,235,.35);display:flex;align-items:flex-start;gap:12px;pointer-events:auto;cursor:pointer;animation:toastIn .35s cubic-bezier(.25,1.2,.5,1);position:relative;overflow:hidden}
 .toast::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.6)}
@@ -122,10 +114,8 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 @keyframes toastIn{from{opacity:0;transform:translateY(-30px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes toastOut{to{opacity:0;transform:translateY(-20px) scale(.95)}}
 .toast.out{animation:toastOut .3s ease forwards}
-
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
-
 @media print{body{padding:0;background:#fff}.app-header,.bottom-nav,.toast-container,.no-print{display:none!important}.timetable-wrapper{margin:0;border-radius:0}.modal-overlay{display:none!important}}
 @media (max-width:420px){
     .header-title .week-select{font-size:18px}
@@ -170,20 +160,21 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 </nav>
 
 <input type="file" id="fileInput" class="file-input-hidden" accept=".xlsx,.xls,.csv">
+<input type="file" id="iconInput" class="file-input-hidden" accept="image/*">
 <div class="toast-container" id="toastContainer"></div>
 <div id="statusDot" style="display:none"></div>
 <div id="statusText" style="display:none"></div>
 <div id="fileInfo" style="display:none"></div>
 
-<!-- 设置弹窗 -->
 <div class="modal-overlay" id="settingsModal">
     <div class="modal-box">
         <h3>⚙️ 设置</h3>
-        <div class="sub-info">学期信息、节次时间与课前提醒</div>
+        <div class="sub-info">学期信息、节次时间、课前提醒与图标</div>
         <div class="settings-tabs">
             <button class="tab active" data-tab="semester">📅 学期</button>
             <button class="tab" data-tab="time">⏰ 时间</button>
             <button class="tab" data-tab="reminder">🔔 提醒</button>
+            <button class="tab" data-tab="icon">🎨 图标</button>
         </div>
         <div class="tab-content active" id="tabSemester">
             <label>学期第 1 周的起始日期</label>
@@ -196,7 +187,7 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
                 <option value="周日">周日</option>
             </select>
             <div class="sub-info" style="margin-top:12px;font-size:12px;line-height:1.6">
-                💡 填写后，顶部 📍 按钮会自动定位到当前周次，日期条会显示真实日期。
+                💡 填写后，顶部 📍 按钮会自动定位到当前周次。
             </div>
         </div>
         <div class="tab-content" id="tabTime"><div id="timeSettingList"></div></div>
@@ -223,6 +214,20 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
                 ⚠️ 网页版仅能在 App 打开时提醒。
             </div>
         </div>
+        <div class="tab-content" id="tabIcon">
+            <div class="sub-info" style="margin-bottom:8px">预览当前图标</div>
+            <div class="icon-preview"><img id="iconPreview" alt="图标预览"></div>
+            <div class="sub-info" style="margin:14px 0 4px;font-weight:600;color:#334155;font-size:14px">选个 Emoji</div>
+            <div class="icon-emoji-grid" id="emojiGrid"></div>
+            <button class="icon-action-btn" id="uploadIconBtn">📷 上传自定义图片</button>
+            <button class="icon-action-btn outline" id="resetIconBtn">恢复默认图标</button>
+            <div class="icon-hint">
+                💡 iOS 主屏图标只在「添加到主屏」时读取。改完后请：<br>
+                1. 删除主屏上的旧图标<br>
+                2. Safari 重新打开链接<br>
+                3. 重新「添加到主屏」
+            </div>
+        </div>
         <div class="modal-actions">
             <button class="btn btn-outline" id="settingsCancel">取消</button>
             <button class="btn btn-primary" id="settingsSave">保存</button>
@@ -230,7 +235,6 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
     </div>
 </div>
 
-<!-- 编辑课程弹窗 -->
 <div class="modal-overlay" id="editModal">
     <div class="modal-box">
         <h3>✏️ 编辑课程</h3>
@@ -249,32 +253,136 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC',Roboto,sans-serif;backgr
 </div>
 
 <script>
-// ========== PWA ==========
-(function setupPWA(){
-    function generateIcon(size){
-        const c=document.createElement('canvas');c.width=size;c.height=size;
-        const ctx=c.getContext('2d');
-        const g=ctx.createLinearGradient(0,0,size,size);
-        g.addColorStop(0,'#2563eb');g.addColorStop(1,'#7c3aed');
-        ctx.fillStyle=g;ctx.shadowColor='rgba(0,0,0,.2)';ctx.shadowBlur=10;
-        ctx.beginPath();ctx.roundRect(0,0,size,size,size*.2);ctx.fill();
-        ctx.shadowBlur=0;ctx.fillStyle='#fff';
-        ctx.font=`bold ${size*.5}px -apple-system,"PingFang SC",sans-serif`;
-        ctx.textAlign='center';ctx.textBaseline='middle';
-        ctx.fillText('📚',size/2,size/2-2);
-        return c.toDataURL('image/png');
-    }
-    const icons=[192,512].map(s=>({src:generateIcon(s),sizes:`${s}x${s}`,type:'image/png',purpose:'any maskable'}));
-    const manifest={name:'学期课表工作台',short_name:'课表',start_url:location.href.split('?')[0],display:'standalone',orientation:'portrait',background_color:'#fff',theme_color:'#2563eb',icons:icons};
-    document.getElementById('manifestLink').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));
-    const ai=document.createElement('link');ai.rel='apple-touch-icon';ai.href=icons[0].src;document.head.appendChild(ai);
-})();
+// ========== 图标配置 ==========
+const DEFAULT_EMOJI='📚';
+const DEFAULT_GRADIENT=['#2563eb','#7c3aed'];
+const EMOJI_OPTIONS=['📚','📖','📝','✏️','🎓','🏫','🗓️','📅','⏰','🔔','⭐','🎯','💡','🎒','🍎','🚀','🌈','💎'];
 
-// ========== 核心 ==========
+let customIcon=localStorage.getItem('custom_icon')||'';
+let customEmoji=localStorage.getItem('custom_emoji')||DEFAULT_EMOJI;
+
+// ========== 生成图标 ==========
+function generateIconCanvas(size){
+    const c=document.createElement('canvas');c.width=size;c.height=size;
+    const ctx=c.getContext('2d');
+    const g=ctx.createLinearGradient(0,0,size,size);
+    g.addColorStop(0,DEFAULT_GRADIENT[0]);g.addColorStop(1,DEFAULT_GRADIENT[1]);
+    ctx.fillStyle=g;ctx.shadowColor='rgba(0,0,0,.2)';ctx.shadowBlur=size*.02;
+    ctx.beginPath();ctx.roundRect(0,0,size,size,size*.22);ctx.fill();
+    ctx.shadowBlur=0;
+    // 自适应字体大小（emoji 在大尺寸下更清晰）
+    const fontSize=Math.round(size*(customEmoji.length>1?0.42:0.52));
+    ctx.font=`${fontSize}px -apple-system,"Apple Color Emoji","PingFang SC",sans-serif`;
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(customEmoji,size/2,size/2+size*.02);
+    return c;
+}
+function generateIcon(size){
+    if(customIcon)return customIcon;
+    return generateIconCanvas(size).toDataURL('image/png');
+}
+
+// ========== 上传图片 → 处理 ==========
+function processUploadedImage(file,callback){
+    const reader=new FileReader();
+    reader.onload=function(e){
+        const img=new Image();
+        img.onload=function(){
+            const SIZE=512;
+            const c=document.createElement('canvas');c.width=SIZE;c.height=SIZE;
+            const ctx=c.getContext('2d');
+            // 居中裁剪成正方形
+            const s=Math.min(img.width,img.height);
+            const sx=(img.width-s)/2,sy=(img.height-s)/2;
+            ctx.drawImage(img,sx,sy,s,s,0,0,SIZE,SIZE);
+            // 用 JPEG 压缩（体积更小，图标不带透明）
+            callback(c.toDataURL('image/jpeg',0.88));
+        };
+        img.onerror=function(){alert('图片加载失败，请换一张试试');};
+        img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+// ========== 刷新 manifest 和 apple-touch-icon ==========
+function refreshManifestAndIcons(){
+    const icons=[192,512].map(s=>({
+        src:generateIcon(s),
+        sizes:`${s}x${s}`,
+        type:'image/png',
+        purpose:'any maskable'
+    }));
+    const manifest={
+        name:'学期课表工作台',
+        short_name:'课表',
+        start_url:location.href.split('?')[0],
+        display:'standalone',
+        orientation:'portrait',
+        background_color:'#fff',
+        theme_color:'#2563eb',
+        icons:icons
+    };
+    const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+    const link=document.getElementById('manifestLink');
+    // 加时间戳避免缓存
+    link.href=URL.createObjectURL(blob)+'?t='+Date.now();
+
+    // 更新 apple-touch-icon
+    document.querySelectorAll('link[rel="apple-touch-icon"]').forEach(el=>el.remove());
+    const appleIcon=document.createElement('link');
+    appleIcon.rel='apple-touch-icon';
+    appleIcon.href=icons[0].src;
+    document.head.appendChild(appleIcon);
+
+    // 更新 favicon
+    document.querySelectorAll('link[rel="icon"]').forEach(el=>el.remove());
+    const fav=document.createElement('link');
+    fav.rel='icon';fav.type='image/png';fav.href=icons[0].src;
+    document.head.appendChild(fav);
+
+    // 更新设置里的预览
+    const prev=document.getElementById('iconPreview');
+    if(prev)prev.src=icons[0].src;
+
+    // 高亮当前 emoji
+    document.querySelectorAll('.emoji-opt').forEach(el=>{
+        el.classList.toggle('selected',!customIcon&&el.dataset.emoji===customEmoji);
+    });
+}
+
+// ========== 初始化 emoji 选择器 ==========
+function buildEmojiGrid(){
+    const grid=document.getElementById('emojiGrid');
+    if(!grid)return;
+    grid.innerHTML='';
+    EMOJI_OPTIONS.forEach(em=>{
+        const div=document.createElement('div');
+        div.className='emoji-opt';
+        div.dataset.emoji=em;
+        div.textContent=em;
+        if(!customIcon&&em===customEmoji)div.classList.add('selected');
+        div.addEventListener('click',()=>{
+            customEmoji=em;
+            customIcon='';
+            try{
+                localStorage.setItem('custom_emoji',em);
+                localStorage.removeItem('custom_icon');
+            }catch(e){}
+            refreshManifestAndIcons();
+        });
+        grid.appendChild(div);
+    });
+}
+
+// ========== PWA 初始化（首次） ==========
+(function initPWA(){refreshManifestAndIcons();})();
+
+// ========== 核心逻辑 ==========
 (function(){
 'use strict';
 
 const fileInput=document.getElementById('fileInput');
+const iconInput=document.getElementById('iconInput');
 const container=document.getElementById('timetableContainer');
 const weekSelect=document.getElementById('weekSelect');
 const headerDate=document.getElementById('headerDate');
@@ -309,14 +417,10 @@ let semesterStart=localStorage.getItem('semester_start')||'';
 let semesterStartWeekday=localStorage.getItem('semester_start_weekday')||'周一';
 let reminderSettings={enabled:localStorage.getItem('reminder_enabled')==='1',leads:(localStorage.getItem('reminder_leads')||'30,20,10').split(',').map(n=>parseInt(n)).filter(n=>!isNaN(n)),sound:localStorage.getItem('reminder_sound')!=='0',vibrate:localStorage.getItem('reminder_vibrate')!=='0'};
 
-// ============ 时间 ============
 function getDefaultTimes(count){
     const def=[{start:'08:00',end:'08:45'},{start:'08:50',end:'09:35'},{start:'09:50',end:'10:35'},{start:'10:40',end:'11:25'},{start:'11:30',end:'12:15'},{start:'13:30',end:'14:15'},{start:'14:20',end:'15:05'},{start:'15:20',end:'16:05'},{start:'16:10',end:'16:55'},{start:'17:00',end:'17:45'},{start:'18:30',end:'19:15'},{start:'19:20',end:'20:05'},{start:'20:10',end:'20:55'},{start:'21:00',end:'21:45'}];
     const out=[];
-    for(let i=0;i<count;i++){
-        if(i<def.length)out.push({...def[i]});
-        else{const b=8+Math.floor(i/2),m=(i%2===0)?0:30;out.push({start:`${String(b).padStart(2,'0')}:${String(m).padStart(2,'0')}`,end:'23:00'});}
-    }
+    for(let i=0;i<count;i++){if(i<def.length)out.push({...def[i]});else{const b=8+Math.floor(i/2),m=(i%2===0)?0:30;out.push({start:`${String(b).padStart(2,'0')}:${String(m).padStart(2,'0')}`,end:'23:00'});}}
     return out;
 }
 function loadPeriodTimes(){try{const r=localStorage.getItem('period_times');if(r){const p=JSON.parse(r);if(Array.isArray(p)){periodTimes=p;return;}}}catch(e){}periodTimes=[];}
@@ -330,15 +434,13 @@ function syncPeriodTimes(periods){
 }
 function getTodayWeekday(){return['周日','周一','周二','周三','周四','周五','周六'][new Date().getDay()];}
 
-// ============ 周次计算 ============
 function getSemesterMonday(){
     if(!semesterStart)return null;
     const wdMap={'周一':1,'周二':2,'周三':3,'周四':4,'周五':5,'周六':6,'周日':7};
     const startWd=wdMap[semesterStartWeekday]||1;
     const sd=new Date(semesterStart+'T00:00:00');
     if(isNaN(sd.getTime()))return null;
-    const m=new Date(sd);m.setDate(sd.getDate()-(startWd-1));
-    m.setHours(0,0,0,0);return m;
+    const m=new Date(sd);m.setDate(sd.getDate()-(startWd-1));m.setHours(0,0,0,0);return m;
 }
 function getWeekDates(weekIdx){
     const m=getSemesterMonday();
@@ -365,7 +467,6 @@ function getCurrentWeekIndex(){
     return wn<timetableData.weeks[0]?0:timetableData.weeks.length-1;
 }
 
-// ============ 提醒 ============
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function fireNotification(info){showToast(info);if(reminderSettings.sound)playDing();if(reminderSettings.vibrate&&navigator.vibrate){try{navigator.vibrate([200,80,200]);}catch(e){}}}
 function showToast(info){
@@ -416,7 +517,6 @@ function checkReminders(){
 function startReminderLoop(){if(reminderTimer)clearInterval(reminderTimer);reminderTimer=setInterval(checkReminders,30000);lastCheck=Date.now()-60000;checkReminders();}
 function reloadReminderSettings(){reminderSettings={enabled:localStorage.getItem('reminder_enabled')==='1',leads:(localStorage.getItem('reminder_leads')||'30,20,10').split(',').map(n=>parseInt(n)).filter(n=>!isNaN(n)),sound:localStorage.getItem('reminder_sound')!=='0',vibrate:localStorage.getItem('reminder_vibrate')!=='0'};}
 
-// ============ 解析单元格 ============
 function parseCellContent(text,dp){
     let raw=text.replace(/<br\s*\/?>/gi,'\n');
     const lines=raw.split('\n').map(s=>s.trim()).filter(s=>s);
@@ -452,7 +552,6 @@ function parseCellContent(text,dp){
     return result;
 }
 
-// ============ 学期课表解析 ============
 function detectSemesterTimetable(rawData){
     if(!rawData||rawData.length<2)return null;
     const wk=['周一','周二','周三','周四','周五','周六','周日','星期一','星期二','星期三','星期四','星期五','星期六','星期日','Mon','Tue','Wed','Thu','Fri','Sat','Sun','一','二','三','四','五','六','日'];
@@ -537,7 +636,6 @@ function detectSemesterTimetable(rawData){
     return{weekdays,periods,weeks,weekCourses,colorMap};
 }
 
-// ============ 位置缓存（只读当前周） ============
 function buildPosCache(data){
     const pc=data.periods.length,wc=data.weekdays.length;
     const pos=[];
@@ -554,7 +652,6 @@ function buildPosCache(data){
     return pos;
 }
 
-// ============ 渲染 ============
 function renderWeekTimetable(data,weekIdx){
     if(!data||!data.weekdays||!data.periods||!data.weekCourses){
         container.innerHTML=`<div class="empty-state"><span class="big-icon">🗓️</span><h3>暂无课表</h3><p>请上传有效的学期课表文件</p></div>`;
@@ -575,7 +672,6 @@ function renderWeekTimetable(data,weekIdx){
 
     const pos=buildPosCache(data);
 
-    // 合并连续相同的课程（同列、相邻行、同名）
     const blocks=[];
     for(let ci=0;ci<wc;ci++){
         let ri=0;
@@ -594,7 +690,6 @@ function renderWeekTimetable(data,weekIdx){
     }
 
     let html=`<div class="tt-body" style="grid-template-rows:repeat(${pc},auto)">`;
-    // 时间列
     for(let ri=0;ri<pc;ri++){
         const t=periodTimes[ri]||{start:'',end:''};
         html+=`<div class="tt-time" style="grid-row:${ri+1};grid-column:1">
@@ -602,14 +697,12 @@ function renderWeekTimetable(data,weekIdx){
             <div class="tt-time-range"><span>${t.start||'--:--'}</span><span>${t.end||'--:--'}</span></div>
         </div>`;
     }
-    // 背景格
     for(let ri=0;ri<pc;ri++){
         for(let ci=0;ci<wc;ci++){
             const cls=`tt-bg ${ci===wc-1?'last-col':''} ${ri===pc-1?'last-row':''}`;
             html+=`<div class="${cls}" style="grid-row:${ri+1};grid-column:${ci+2}"></div>`;
         }
     }
-    // 课程块
     blocks.forEach(b=>{
         const cn=b.name;
         const ci=colorMap[cn]!==undefined?colorMap[cn]:(cn.charCodeAt(0)%15);
@@ -669,7 +762,6 @@ function renderHeaderDays(weekIdx){
     headerDays.innerHTML=html;
 }
 
-// ============ 定位今天 ============
 function goToday(){
     if(!timetableData){alert('请先加载课表');return;}
     const idx=getCurrentWeekIndex();
@@ -680,7 +772,6 @@ function goToday(){
     switchToWeek(idx,idx>currentWeekIndex?'left':'right');
 }
 
-// ============ 编辑 ============
 function openEditModal(weekIdx,row,rowEnd,col,weekday,period,raw){
     editCellRef={weekIdx,row,rowEnd,col};
     const lines=raw.split('\n').filter(s=>s.trim());
@@ -721,7 +812,6 @@ function buildColorMapFromStrings(cells){
     return map;
 }
 
-// ============ 切换周次 ============
 function switchToWeek(newIndex,direction,onComplete){
     if(!timetableData||!timetableData.weeks||!timetableData.weeks.length)return;
     if(newIndex<0||newIndex>=timetableData.weeks.length)return;
@@ -745,7 +835,6 @@ function switchToWeek(newIndex,direction,onComplete){
     },150);
 }
 
-// ============ 文件 ============
 function handleFile(file){
     if(!file)return;
     const reader=new FileReader();
@@ -771,7 +860,6 @@ function handleFile(file){
     reader.readAsArrayBuffer(file);
 }
 
-// ============ 周次下拉 ============
 function populateWeekSelect(weeks){
     weekSelect.innerHTML='';
     weeks.forEach((w,idx)=>{
@@ -786,7 +874,6 @@ function populateWeekSelect(weeks){
     };
 }
 
-// ============ 存储 ============
 function saveToStorage(){
     try{
         if(timetableData){
@@ -827,7 +914,6 @@ function clearTimetable(){
     document.getElementById('uploadHint')?.addEventListener('click',()=>fileInput.click());
 }
 
-// ============ 设置 ============
 function openSettings(){
     semStartDate.value=semesterStart||'';
     semStartWeekday.value=semesterStartWeekday||'周一';
@@ -840,13 +926,15 @@ function openSettings(){
         const l=parseInt(c.dataset.lead);
         c.classList.toggle('on',reminderSettings.leads.includes(l));
     });
+    // 刷新图标预览
+    refreshManifestAndIcons();
     switchSettingsTab('semester');
     settingsModal.classList.add('active');
 }
 function switchSettingsTab(tab){
     document.querySelectorAll('.settings-tabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
     document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-    const map={semester:'tabSemester',time:'tabTime',reminder:'tabReminder'};
+    const map={semester:'tabSemester',time:'tabTime',reminder:'tabReminder',icon:'tabIcon'};
     const el=document.getElementById(map[tab]);if(el)el.classList.add('active');
 }
 function renderTimeSettings(){
@@ -906,7 +994,6 @@ function saveSettings(){
     settingsModal.classList.remove('active');
 }
 
-// ============ 工具 ============
 function exportImage(){
     const t=document.querySelector('.tt-body');
     if(!t){alert('请先加载课表');return;}
@@ -931,7 +1018,6 @@ function showTools(){
     if(action)exportImage();else printTimetable();
 }
 
-// ============ 导航 ============
 function switchTab(tab){
     bottomNavItems.forEach(i=>i.classList.remove('active'));
     const target=Array.from(bottomNavItems).find(i=>i.dataset.tab===tab);
@@ -948,7 +1034,6 @@ function switchTab(tab){
     },300);
 }
 
-// ============ 滑动 ============
 function bindSwipe(){
     let startX=0,startY=0,dir=0,swiping=false;
     timetableWrapper.addEventListener('touchstart',e=>{const t=e.touches[0];startX=t.clientX;startY=t.clientY;dir=0;swiping=false;},{passive:true});
@@ -992,10 +1077,31 @@ function resetSwipe(){
     timetableWrapper.style.opacity='1';
 }
 
-// ============ 事件 ============
 fileInput.addEventListener('change',function(){
     if(this.files&&this.files.length>0)handleFile(this.files[0]);
     this.value='';
+});
+iconInput.addEventListener('change',function(){
+    if(this.files&&this.files.length>0){
+        processUploadedImage(this.files[0],dataUrl=>{
+            customIcon=dataUrl;
+            try{localStorage.setItem('custom_icon',dataUrl);}catch(e){alert('图片太大，存储失败，请选小一点的图');}
+            refreshManifestAndIcons();
+            alert('✅ 图标已更新\n\n请删除主屏旧图标后重新「添加到主屏」以生效');
+        });
+    }
+    this.value='';
+});
+document.getElementById('uploadIconBtn').addEventListener('click',()=>iconInput.click());
+document.getElementById('resetIconBtn').addEventListener('click',()=>{
+    customIcon='';
+    customEmoji=DEFAULT_EMOJI;
+    try{
+        localStorage.removeItem('custom_icon');
+        localStorage.removeItem('custom_emoji');
+    }catch(e){}
+    refreshManifestAndIcons();
+    alert('✅ 已恢复默认图标');
 });
 document.addEventListener('click',function(e){
     if(e.target.id==='uploadHint'||e.target.closest('#uploadHint'))fileInput.click();
@@ -1033,6 +1139,7 @@ document.addEventListener('visibilitychange',()=>{
 
 // ============ 初始化 ============
 loadPeriodTimes();
+buildEmojiGrid();
 const loaded=loadFromStorage();
 if(!loaded){
     container.innerHTML=`<div class="empty-state"><span class="big-icon">🗓️</span><h3>还没有课表</h3><p>上传包含学期课程的 Excel 文件</p><div class="upload-hint" id="uploadHint">📂 点击上传 .xlsx / .xls / .csv</div></div>`;
@@ -1042,7 +1149,7 @@ if(!loaded){
 bindSwipe();
 startReminderLoop();
 
-console.log('📚 学期课表 (周视图·仅本周版) 已启动');
+console.log('📚 学期课表 (自定义图标版) 已启动');
 })();
 </script>
 </body>
